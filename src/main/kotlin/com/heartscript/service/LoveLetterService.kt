@@ -7,8 +7,6 @@ import reactor.core.publisher.Mono
 
 interface LoveLetterService {
     fun generateLoveLetter(request: CreateLoveLetterRequest): Mono<LoveLetterResponse>
-    fun getLetterById(id: String): Mono<LoveLetterResponse>
     fun getAllLetter(): Flux<LoveLetterResponse>
-    fun deleteById(id: String): Mono<Void>
-    fun deleteAll(): Mono<Void>
+    fun getLetterByReceiver(receiver: String): Flux<LoveLetterResponse>
 }

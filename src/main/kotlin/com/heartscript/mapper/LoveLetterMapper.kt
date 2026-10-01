@@ -9,23 +9,24 @@ import java.time.Instant
 @Component
 class LoveLetterMapper {
 
-    fun toEntity(request: CreateLoveLetterRequest): LoveLetter {
+    fun toEntity(
+        request: CreateLoveLetterRequest,
+        generatedContent: String
+    ): LoveLetter {
         return LoveLetter(
             senderName = request.senderName,
             receiverName = request.receiverName,
+            receiverNickname = request.receiverNickname,
             relation = request.relation,
             occasion = request.occasion,
             tone = request.tone,
             title = "To ${request.receiverName}",
-            content = """
-                Dear ${request.receiverName}
-                You are best Part of my life
-                with Love,
-                from ${request.senderName}
-            """.trimIndent(),
-            createdAt = Instant.now(),
-
-            )
+            content = generatedContent,
+            length = request.length,
+            signatureStyle = request.signatureStyle,
+            memories = request.memories,
+            createdAt = Instant.now()
+        )
     }
 
     fun toResponse(entity: LoveLetter): LoveLetterResponse {
@@ -33,7 +34,8 @@ class LoveLetterMapper {
             id = entity.id,
             title = entity.title,
             content = entity.content,
-            createdAt = Instant.now(),
+            relation = entity.relation,
+            createdAt = entity.createdAt
         )
     }
 }

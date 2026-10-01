@@ -11,10 +11,14 @@ data class LoveLetter (
     val id: String? = null,
     val senderName: String,
     val receiverName: String,
+    val receiverNickname: String? = null,
     val relation: String,
     val occasion: String,
     val tone: String,
+    val signatureStyle: String? = null,
     val title: String,
     val content: String,
+    val length: String? = null,
+    val memories: String,
     val createdAt: Instant
 )
